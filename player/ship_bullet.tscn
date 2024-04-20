@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvofxomme0tn4"]
+
+[ext_resource type="Texture2D" uid="uid://rk3vvjmo2y3m" path="res://assets/art/ship-bullet.png" id="1_6ur2s"]
+[ext_resource type="Script" path="res://player/ship_bullet.gd" id="1_e88ks"]
+[ext_resource type="Script" path="res://components/Hitbox.gd" id="2_5by2k"]
+[ext_resource type="Script" path="res://components/MoveNode2D.gd" id="3_6jcwq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26v2v"]
+size = Vector2(4, 1)
+
+[node name="ShipBullet" type="Node2D"]
+script = ExtResource("1_e88ks")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6ur2s")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_5by2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_26v2v")
+
+[node name="MoveNode2D" type="Node2D" parent="." node_paths=PackedStringArray("node2d")]
+script = ExtResource("3_6jcwq")
+node2d = NodePath("..")
+move_speed = 400.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.3, 0.2)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
