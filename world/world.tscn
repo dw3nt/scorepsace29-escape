@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://01jvmkw83nbc"]
 
 [ext_resource type="Texture2D" uid="uid://baepa7ydyqipv" path="res://assets/art/background.png" id="1_8cuil"]
-[ext_resource type="PackedScene" uid="uid://b0jyml24mbm0j" path="res://player/player_ship.tscn" id="2_ujpwl"]
+[ext_resource type="PackedScene" uid="uid://17prf0ey3jya" path="res://player/player_marine.tscn" id="2_lf32y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yta6v"]
 size = Vector2(320, 20)
@@ -27,5 +27,5 @@ collision_mask = 0
 position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_yta6v")
 
-[node name="PlayerShip" parent="." instance=ExtResource("2_ujpwl")]
-position = Vector2(144, 88)
+[node name="PlayerMarine" parent="." instance=ExtResource("2_lf32y")]
+position = Vector2(80, 173)

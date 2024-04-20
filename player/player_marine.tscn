@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://17prf0ey3jya"]
+
+[ext_resource type="Texture2D" uid="uid://cadg2208g2kl0" path="res://assets/art/marine.png" id="1_pqr55"]
+[ext_resource type="Script" path="res://player/player_marine.gd" id="1_sd7yu"]
+[ext_resource type="Script" path="res://components/Hurtbox.gd" id="3_vexwv"]
+[ext_resource type="PackedScene" uid="uid://b16vrudtbolu8" path="res://player/gun.tscn" id="4_li8ym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smir6"]
+size = Vector2(4, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsepl"]
+size = Vector2(4, 9)
+
+[node name="PlayerMarine" type="CharacterBody2D"]
+script = ExtResource("1_sd7yu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_pqr55")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_smir6")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_vexwv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_jsepl")
+
+[node name="Gun" parent="." instance=ExtResource("4_li8ym")]
+position = Vector2(0, -5)
