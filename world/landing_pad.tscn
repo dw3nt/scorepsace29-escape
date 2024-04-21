@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwqycay60g5ra"]
+
+[ext_resource type="Script" path="res://world/landing_pad.gd" id="1_vd0t1"]
+[ext_resource type="Texture2D" uid="uid://ch34pbrmp7n3n" path="res://assets/art/landing.png" id="2_a5buo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tu4ll"]
+size = Vector2(30, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrcvn"]
+size = Vector2(22, 12)
+
+[node name="LandingPad" type="Node2D"]
+z_index = -2
+script = ExtResource("1_vd0t1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("2_a5buo")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_tu4ll")
+
+[node name="ShipDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipDetect"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_vrcvn")
+
+[connection signal="body_entered" from="ShipDetect" to="." method="_on_ship_detect_body_entered"]

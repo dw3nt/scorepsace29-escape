@@ -12,6 +12,8 @@ func _physics_process(_delta: float) -> void:
 	var mouse_position: Vector2 = get_global_mouse_position()
 	look_at(mouse_position)
 	sprite.flip_v = mouse_position.x < global_position.x
+	sprite.position.y = -1 if mouse_position.x < global_position.x else 1
+	marker_2d.position.y = 1 if mouse_position.x < global_position.x else -1
 	shoot_bullet()
 	
 func shoot_bullet() -> void:

@@ -4,14 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://b8wu6s0af5y0c" path="res://assets/art/gun.png" id="1_iyi6t"]
 
 [node name="Gun" type="Node2D"]
+rotation = 3.14159
 script = ExtResource("1_4ppqt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(6, 1)
 texture = ExtResource("1_iyi6t")
+flip_v = true
 
 [node name="Marker2D" type="Marker2D" parent="Sprite2D"]
-position = Vector2(2, -1)
+position = Vector2(2, 1)
 
 [node name="ShootCooldownTimer" type="Timer" parent="."]
 wait_time = 0.25
