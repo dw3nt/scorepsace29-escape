@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://01jvmkw83nbc"]
+[gd_scene load_steps=9 format=3 uid="uid://01jvmkw83nbc"]
 
 [ext_resource type="Texture2D" uid="uid://baepa7ydyqipv" path="res://assets/art/background.png" id="1_8cuil"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_lntsq"]
 [ext_resource type="PackedScene" uid="uid://17prf0ey3jya" path="res://player/player_marine.tscn" id="2_lf32y"]
 [ext_resource type="PackedScene" uid="uid://b0jyml24mbm0j" path="res://player/player_ship.tscn" id="2_ujpwl"]
+[ext_resource type="PackedScene" uid="uid://caeddnc3vckc8" path="res://world/jail.tscn" id="4_kxqhv"]
 [ext_resource type="PackedScene" uid="uid://cwqycay60g5ra" path="res://world/landing_pad.tscn" id="5_yxcw7"]
+[ext_resource type="PackedScene" uid="uid://b71iohvh3u35l" path="res://world/console.tscn" id="6_j3htq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yta6v"]
 size = Vector2(320, 20)
@@ -32,11 +34,18 @@ collision_mask = 0
 position = Vector2(160, 0)
 shape = SubResource("RectangleShape2D_yta6v")
 
+[node name="Console" parent="." node_paths=PackedStringArray("jail") instance=ExtResource("6_j3htq")]
+position = Vector2(128, 174)
+jail = NodePath("Jail")
+
+[node name="Jail" parent="Console" instance=ExtResource("4_kxqhv")]
+position = Vector2(-96, 0)
+
 [node name="PlayerShip" parent="." instance=ExtResource("2_ujpwl")]
 position = Vector2(216, 168)
 
 [node name="PlayerMarine" parent="." instance=ExtResource("2_lf32y")]
-position = Vector2(80, 173)
+position = Vector2(182, 171)
 
 [node name="LandingPad" parent="." instance=ExtResource("5_yxcw7")]
 position = Vector2(216, 174)
