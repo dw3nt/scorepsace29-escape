@@ -62,4 +62,5 @@ position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_wq5p4")
 
 [connection signal="body_entered" from="ShipDetect" to="." method="_on_ship_detect_body_entered"]
+[connection signal="body_exited" from="ShipDetect" to="." method="_on_ship_detect_body_exited"]
 [connection signal="body_entered" from="MarineDetect" to="." method="_on_ship_detect_body_entered"]
