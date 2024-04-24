@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cwqycay60g5ra"]
+[gd_scene load_steps=6 format=3 uid="uid://cwqycay60g5ra"]
 
 [ext_resource type="Script" path="res://world/landing_pad.gd" id="1_vd0t1"]
 [ext_resource type="Texture2D" uid="uid://ch34pbrmp7n3n" path="res://assets/art/landing.png" id="2_a5buo"]
@@ -8,6 +8,9 @@ size = Vector2(30, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vrcvn"]
 size = Vector2(22, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wq5p4"]
+size = Vector2(4, 10)
 
 [node name="LandingPad" type="Node2D"]
 z_index = -2
@@ -32,4 +35,31 @@ collision_mask = 2
 position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_vrcvn")
 
+[node name="MarineDetect" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MarineDetect"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_vrcvn")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-15, 0)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_wq5p4")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(15, 0)
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_wq5p4")
+
 [connection signal="body_entered" from="ShipDetect" to="." method="_on_ship_detect_body_entered"]
+[connection signal="body_entered" from="MarineDetect" to="." method="_on_ship_detect_body_entered"]

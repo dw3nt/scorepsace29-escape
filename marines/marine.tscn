@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://ijd2wwffd2kh"]
+
+[ext_resource type="Texture2D" uid="uid://cadg2208g2kl0" path="res://assets/art/marine.png" id="1_cj4ck"]
+[ext_resource type="Script" path="res://marines/marine.gd" id="1_xpks1"]
+[ext_resource type="Script" path="res://components/Hurtbox.gd" id="2_qedsp"]
+[ext_resource type="Script" path="res://components/MoveCharacter.gd" id="3_r6sv7"]
+[ext_resource type="Script" path="res://components/RandomTimer.gd" id="5_pwvpe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ciyxq"]
+size = Vector2(4, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3w64"]
+size = Vector2(4, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23287"]
+size = Vector2(2, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lid2"]
+size = Vector2(8, 10)
+
+[node name="Marine" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 129
+script = ExtResource("1_xpks1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.490196, 0.737255, 0.356863, 1)
+position = Vector2(0, -6)
+texture = ExtResource("1_cj4ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ciyxq")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("2_qedsp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_d3w64")
+
+[node name="MoveCharacter" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("3_r6sv7")
+character = NodePath("..")
+move_speed = 50.0
+
+[node name="WanderTimer" type="Timer" parent="."]
+script = ExtResource("5_pwvpe")
+min_timeout = 0.5
+max_timeout = 1.5
+
+[node name="LandingPadDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LandingPadDetect"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_23287")
+
+[node name="PlayerShipDetect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerShipDetect"]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_6lid2")
+
+[connection signal="timeout" from="WanderTimer" to="." method="_on_random_timer_timeout"]
+[connection signal="area_entered" from="LandingPadDetect" to="." method="_on_landing_pad_detect_area_entered"]
+[connection signal="body_entered" from="PlayerShipDetect" to="." method="_on_player_ship_detect_body_entered"]

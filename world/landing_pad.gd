@@ -1,4 +1,4 @@
-extends Node2D
+class_name LandingPad extends Node2D
 
 func _on_ship_detect_body_entered(body: Node2D) -> void:
 	body.pilot_can_exit = true
