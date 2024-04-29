@@ -95,6 +95,8 @@ jump={
 2d_physics/layer_8="jail"
 2d_physics/layer_9="landing_pad"
 2d_physics/layer_10="landing_pad_wall"
+2d_physics/layer_12="enemy"
+2d_physics/layer_13="enemy_hurt"
 
 [rendering]
 

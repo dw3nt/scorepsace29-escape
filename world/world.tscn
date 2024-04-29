@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://01jvmkw83nbc"]
+[gd_scene load_steps=11 format=3 uid="uid://01jvmkw83nbc"]
 
 [ext_resource type="Texture2D" uid="uid://baepa7ydyqipv" path="res://assets/art/background.png" id="1_8cuil"]
 [ext_resource type="Script" path="res://world/world.gd" id="1_lntsq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ijd2wwffd2kh" path="res://marines/marine.tscn" id="5_h06g0"]
 [ext_resource type="PackedScene" uid="uid://cwqycay60g5ra" path="res://world/landing_pad.tscn" id="5_yxcw7"]
 [ext_resource type="PackedScene" uid="uid://b71iohvh3u35l" path="res://world/console.tscn" id="6_j3htq"]
+[ext_resource type="PackedScene" uid="uid://ls1pvj1mrekv" path="res://enemies/enemy.tscn" id="9_p111p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yta6v"]
 size = Vector2(320, 20)
@@ -57,3 +58,6 @@ position = Vector2(182, 171)
 
 [node name="LandingPad" parent="." instance=ExtResource("5_yxcw7")]
 position = Vector2(216, 174)
+
+[node name="Enemy" parent="." instance=ExtResource("9_p111p")]
+position = Vector2(64, 64)

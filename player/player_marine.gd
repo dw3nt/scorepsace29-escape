@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name PlayerMarine extends CharacterBody2D
 
 @export var move_speed: float = 100
 @export var gravity: float = 10

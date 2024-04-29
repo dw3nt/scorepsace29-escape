@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://ls1pvj1mrekv"]
+
+[ext_resource type="Script" path="res://enemies/enemy.gd" id="1_nimoa"]
+[ext_resource type="Texture2D" uid="uid://de70w0xgnslcp" path="res://assets/art/enemy.png" id="1_vgs22"]
+[ext_resource type="Script" path="res://components/Hurtbox.gd" id="2_e3tpc"]
+[ext_resource type="Script" path="res://components/MoveNode2D.gd" id="3_u75dw"]
+[ext_resource type="Script" path="res://components/RandomTimer.gd" id="5_gn4ji"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehglp"]
+radius = 6.0
+height = 20.0
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_nimoa")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vgs22")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+script = ExtResource("2_e3tpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ehglp")
+
+[node name="MoveNode2D" type="Node2D" parent="." node_paths=PackedStringArray("node2d")]
+script = ExtResource("3_u75dw")
+node2d = NodePath("..")
+move_speed = 100.0
+
+[node name="RandomTimer" type="Timer" parent="."]
+script = ExtResource("5_gn4ji")
+automatically_start = true
+
+[connection signal="timeout" from="RandomTimer" to="." method="_on_random_timer_timeout"]

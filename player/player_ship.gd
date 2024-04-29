@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name PlayerShip extends CharacterBody2D
 
 const SHIP_BULLET = preload("res://player/ship_bullet.tscn")
 
